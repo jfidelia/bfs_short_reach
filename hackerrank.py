@@ -1,9 +1,6 @@
 import sys
 from queue import Queue
 
-def bfs(N, M, edges, s):
-    print(N,M,edges,s)
-    print(build_graph(N,M))
 
 def read_ints():
     return [int(x) for x in sys.stdin.readline().split(" ")]
@@ -48,28 +45,19 @@ def print_distances(S, N, distances):
     print()
 
 
+def test_case():
+    (N, M) = read_ints()
+    node_edges = build_graph(N, M)
+    S = int(sys.stdin.readline())
+    distances = compute_distances(S, node_edges)
+    print_distances(S, N, distances)
+
+
+def main():
+    T = int(sys.stdin.readline())
+    while (T > 0):
+        test_case()
+        T -= 1
+
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
-
-    q = int(input())
-
-    for q_itr in range(q):
-        nm = input().split()
-
-        n = int(nm[0])
-
-        m = int(nm[1])
-
-        edges = []
-
-        for _ in range(m):
-            edges.append(list(map(int, input().rstrip().split())))
-
-        S = int(input())
-
-        result = bfs(n, m, edges, S)
-
-        fptr.write(' '.join(map(str, result)))
-        fptr.write('\n')
-
-    fptr.close()
+    main()
